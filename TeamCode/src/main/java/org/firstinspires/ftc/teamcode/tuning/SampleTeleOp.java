@@ -5,7 +5,6 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@TeleOp(name = "sampleteleop")
 public class SampleTeleOp extends OpMode {
     DcMotorEx frontLeft;
     DcMotorEx frontRight;

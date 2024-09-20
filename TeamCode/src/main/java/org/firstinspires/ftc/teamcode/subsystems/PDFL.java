@@ -14,11 +14,10 @@ public class PDFL {
 
     public double run(double error) {
         double p = pComponent(error);
-        double d = dComponent();
         double f = fComponent();
         double l = lComponent(error);
 
-        double response = p+d+f+l;
+        double response = p+f+l;
 
         return response;
     }

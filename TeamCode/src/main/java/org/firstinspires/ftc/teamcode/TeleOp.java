@@ -1,31 +1,33 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
 /**
  * This file is a LinearOpMode, A Operation Mode that runs line by Line
- * When deployed, this class should appear in the "Autonomous" dropdown menu in alphabetical order
+ * When deployed, this class should appear in the "Tele-Op" dropdown menu in alphabetical order
  * When the class is selected, the classes is loaded with all the code before the "runOpMode" method
  * After the "INIT" button is pressed, all the code before the "waitForStart()" function is ran
  * After the "PLAY" button is pressed, all the code after the "waitForStart()" function is ran
  */
 
-@TeleOp(name="TeleOp", group="Android Studio")
-public class Drivetrain extends LinearOpMode {
+@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="TeleOp", group="Android Studio")
+public class TeleOp extends LinearOpMode {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
     public static DcMotorEx leftFront;
     public static DcMotorEx rightFront;
     public static DcMotorEx leftRear;
     public static DcMotorEx rightRear;
-
+    public static DcMotorEx rightRobotArm;
+    public static DcMotorEx leftRobotArm;
+    public static Servo wrist;
+    public static Servo claw;
+    public static Servo elbow1;
+    public static Servo elbow2;
     @Override
     public void runOpMode() throws InterruptedException {
         leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");

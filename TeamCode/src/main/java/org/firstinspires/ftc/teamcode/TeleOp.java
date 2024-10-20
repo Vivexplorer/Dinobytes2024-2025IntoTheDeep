@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -24,6 +25,7 @@ public class TeleOp extends LinearOpMode {
     public static DcMotorEx rightRear;
     public static DcMotorEx rightRobotArm;
     public static DcMotorEx leftRobotArm;
+    public static DcMotorEx armTilt;
     public static Servo wrist;
     public static Servo claw;
     public static Servo elbow1;
@@ -34,6 +36,14 @@ public class TeleOp extends LinearOpMode {
         rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
         leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
         rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
+
+        rightRobotArm.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        leftRobotArm.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        armTilt.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+
+        rightRobotArm.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+        leftRobotArm.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+        armTilt.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
 
 
         //Drivetrain.init(leftFront, rightFront, leftRear, rightRear);
@@ -46,7 +56,36 @@ public class TeleOp extends LinearOpMode {
             rightFront.setPower((gamepad1.left_stick_y) + (-gamepad1.right_stick_x) + (-gamepad1.left_stick_x));
             leftRear.setPower((gamepad1.left_stick_y) + (gamepad1.right_stick_x) + (-gamepad1.left_stick_x));
             rightRear.setPower((-gamepad1.left_stick_y) + (-gamepad1.right_stick_x) + (gamepad1.left_stick_x));
+            leftRobotArm.setPower(gamepad2.left_stick_y);
+            rightRobotArm.setPower(gamepad2.left_stick_y);
+            rightRobotArm.setPower(gamepad2.left_stick_y);
+            if (gamepad2.dpad_right) {
+                rightRobotArm.setTargetPosition(300);
+                rightRobotArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                rightRobotArm.setPower(0.5);
+                leftRobotArm.setTargetPosition(300);
+                leftRobotArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                leftRobotArm.setPower(0.5);
+                armTilt.setTargetPosition(200);
+                armTilt.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                armTilt.setPower(0.5);
+            }
+            if (gamepad2.dpad_up) {
+                rightRobotArm.setTargetPosition(600);
+                rightRobotArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                rightRobotArm.setPower(0.5);
+                leftRobotArm.setTargetPosition(600);
+                leftRobotArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                leftRobotArm.setPower(0.5);
+                rightRobotArm.setTargetPosition(450);
+                rightRobotArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                rightRobotArm.setPower(0.5);
 
-    }
-}
-}
+            }
+        }
+
+
+            }
+
+                }
+
